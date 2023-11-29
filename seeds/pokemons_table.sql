@@ -6,12 +6,12 @@ CREATE SEQUENCE IF NOT EXISTS pokemons_id_seq;
 CREATE TABLE pokemons (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    type VARCHAR(255)
+    power_type VARCHAR(255)
 );
 
 -- Finally, we add any records that are needed for the tests to run
-INSERT INTO pokemons (name, type) VALUES ('Charmander', 'fire');
-INSERT INTO pokemons (name, type) VALUES ('Squirtle', 'water');
-INSERT INTO pokemons (name, type) VALUES ('Jigglypuff', 'fairy');
-INSERT INTO pokemons (name, type) VALUES ('Meowth', 'normal');
-INSERT INTO pokemons (name, type) VALUES ('Geotude', 'rock');
+INSERT INTO pokemons (name, power_type) VALUES ('Charmander', 'fire');
+INSERT INTO pokemons (name, power_type) VALUES ('Squirtle', 'water');
+INSERT INTO pokemons (name, power_type) VALUES ('Jigglypuff', 'fairy');
+INSERT INTO pokemons (name, power_type) VALUES ('Meowth', 'normal');
+INSERT INTO pokemons (name, power_type) VALUES ('Geotude', 'rock');

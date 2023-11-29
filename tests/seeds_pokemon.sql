@@ -13,5 +13,5 @@ TRUNCATE TABLE pokemons RESTART IDENTITY; -- replace with your own table name.
 -- Below this line there should only be `INSERT` statements.
 -- Replace these statements with your own seed data.
 
-INSERT INTO pokemons (name, type) VALUES ('Pikachu', 'electric');
-INSERT INTO pokemons (name, type) VALUES ('Bulbasaur', 'grass/poison');
+INSERT INTO pokemons (name, power_type) VALUES ('Pikachu', 'electric');
+INSERT INTO pokemons (name, power_type) VALUES ('Bulbasaur', 'grass/poison');
