@@ -4,7 +4,7 @@ _Copy this recipe template to design and implement Model and Repository classes 
 ```
 As a User
 So I can keep track of Pokemons I like
-I'd like to store and view name and power_power_type of Pokemons
+I'd like to store and view name and power_type of Pokemons
 ```
 
 ## 1. Design and create the Table
@@ -21,7 +21,7 @@ Otherwise, [follow this recipe to design and create the SQL schema for your tabl
 Table: pokemons
 
 Columns:
-id | name | power_power_type
+id | name | power_type
 ```
 
 ## 2.1 Create Test SQL seeds
@@ -46,8 +46,8 @@ TRUNCATE TABLE pokemons RESTART IDENTITY; -- replace with your own table name.
 -- Below this line there should only be `INSERT` statements.
 -- Replace these statements with your own seed data.
 
-INSERT INTO pokemons (name, power_power_type) VALUES ('Pikachu', 'electric');
-INSERT INTO pokemons (name, power_power_type) VALUES ('Bulbasaur', 'grass/poison');
+INSERT INTO pokemons (name, power_type) VALUES ('Pikachu', 'electric');
+INSERT INTO pokemons (name, power_type) VALUES ('Bulbasaur', 'grass/poison');
 ```
 
 Run this SQL file on the database to truncate (empty) the table, and insert the seed data. Be mindful of the fact any existing records in the table will be deleted.
