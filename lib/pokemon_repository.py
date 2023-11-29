@@ -5,4 +5,11 @@ class PokemonRepository():
         self._connection = connection
 
     def all(self):
-        pass
+        rows = self._connection.execute('SELECT * FROM pokemons')
+        
+        pokemons = []
+
+        for row in rows:
+            pokemon = Pokemon(row['id'], row['name'], row['power_type'])
+            pokemons.append(pokemon)
+        return pokemons
