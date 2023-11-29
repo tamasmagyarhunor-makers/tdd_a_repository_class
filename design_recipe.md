@@ -4,7 +4,7 @@ _Copy this recipe template to design and implement Model and Repository classes 
 ```
 As a User
 So I can keep track of Pokemons I like
-I'd like to store and view name of type of Pokemons
+I'd like to store and view name and power_power_type of Pokemons
 ```
 
 ## 1. Design and create the Table
@@ -21,7 +21,7 @@ Otherwise, [follow this recipe to design and create the SQL schema for your tabl
 Table: pokemons
 
 Columns:
-id | name | type
+id | name | power_power_type
 ```
 
 ## 2.1 Create Test SQL seeds
@@ -46,8 +46,8 @@ TRUNCATE TABLE pokemons RESTART IDENTITY; -- replace with your own table name.
 -- Below this line there should only be `INSERT` statements.
 -- Replace these statements with your own seed data.
 
-INSERT INTO pokemons (name, type) VALUES ('Pikachu', 'electric');
-INSERT INTO pokemons (name, type) VALUES ('Bulbasaur', 'grass/poison');
+INSERT INTO pokemons (name, power_power_type) VALUES ('Pikachu', 'electric');
+INSERT INTO pokemons (name, power_power_type) VALUES ('Bulbasaur', 'grass/poison');
 ```
 
 Run this SQL file on the database to truncate (empty) the table, and insert the seed data. Be mindful of the fact any existing records in the table will be deleted.
@@ -74,15 +74,15 @@ CREATE SEQUENCE IF NOT EXISTS pokemons_id_seq;
 CREATE TABLE pokemons (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    type VARCHAR(255)
+    power_type VARCHAR(255)
 );
 
 -- Finally, we add any records that are needed for the tests to run
-INSERT INTO pokemons (name, type) VALUES ('Charmander', 'fire');
-INSERT INTO pokemons (name, type) VALUES ('Squirtle', 'water');
-INSERT INTO pokemons (name, type) VALUES ('Jigglypuff', 'fairy');
-INSERT INTO pokemons (name, type) VALUES ('Meowth', 'normal');
-INSERT INTO pokemons (name, type) VALUES ('Geotude', 'rock');
+INSERT INTO pokemons (name, power_type) VALUES ('Charmander', 'fire');
+INSERT INTO pokemons (name, power_type) VALUES ('Squirtle', 'water');
+INSERT INTO pokemons (name, power_type) VALUES ('Jigglypuff', 'fairy');
+INSERT INTO pokemons (name, power_type) VALUES ('Meowth', 'normal');
+INSERT INTO pokemons (name, power_type) VALUES ('Geotude', 'rock');
 ```
 
 ## 3. Define the class names
@@ -116,10 +116,10 @@ Define the attributes of your Model class. You can usually map the table columns
 # (in lib/pokemon.py)
 
 class Pokemon:
-    def __init__(self):
-        self.id = 0
-        self.name = ""
-        self.type = ""
+    def __init__(self, id, name, power_type):
+        self.id = id
+        self.name = name
+        self.power_type = power_type
 
         # Replace the attributes by your own columns.
 
@@ -129,10 +129,10 @@ class Pokemon:
 #
 # >>> pokemon = Pokemon()
 # >>> pokemon.name = "Caterpie"
-# >>> pokemon.type = "bug"
+# >>> pokemon.typower_typepe = "bug"
 # >>> pokemon.name
 # 'Caterpie'
-# >>> pokemon.type
+# >>> pokemon.power_type
 # 'bug'
 
 ```
@@ -158,15 +158,16 @@ class PokemonRepository():
     # No arguments
     def all():
         # Executes the SQL query:
-        # SELECT id, name, type FROM pokemons;
+        # SELECT id, name, power_type FROM pokemons;
 
         # Returns an array of Pokemon objects.
 
         # Gets a single record by its ID
         # One argument: the id (number)
+
     def find(id):
         # Executes the SQL query:
-        # SELECT id, name, type FROM pokemons WHERE id = $1;
+        # SELECT id, name, power_type FROM pokemons WHERE id = $1;
 
         # Returns a single Pokemon object.
 
@@ -199,15 +200,14 @@ repo = PokemonRepository()
 
 pokemons = repo.all()
 
-len(pokemons) # =>  2
+assert len(pokemons) # =>  2
 
-pokemons[0].id # =>  1
-pokemons[0].name # =>  'Pikachu'
-pokemons[0].type # =>  'electric'
+expected = [
+        Pokemon(1, "Pikachu", "electric"),
+        Pokemon(2, "Bulbasaur", "grass/poison")
+    ]
 
-pokemons[1].id # =>  2
-pokemons[1].name # =>  'Bulbasaur'
-pokemons[1].type # =>  'grass/poison'
+assert pokemons == expected
 
 # 2
 # Get a single Pokemon
@@ -216,10 +216,7 @@ repo = PokemonRepository()
 
 pokemon = repo.find(1)
 
-pokemon.id # =>  1
-pokemons.name # =>  'Pikachu'
-pokemons.type # =>  'electric'
-
+assert pokemon = Pokemon(1, 'Pikachu', 'electric')
 # Add more examples for each method
 ```
 
